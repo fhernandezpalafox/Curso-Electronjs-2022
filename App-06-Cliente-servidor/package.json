@@ -1,0 +1,21 @@
+{
+  "name": "app06clienteservidor",
+  "version": "1.0.0",
+  "description": "Sexta aplicacion de Cliente - Servidor",
+  "main": "app.js",
+  "scripts": {
+    "dev": "electron app.js",
+    "start": "electron app.js"
+  },
+  "keywords": [
+    "Electron",
+    "NodeJs",
+    "Escritorio",
+    "Bootstrap"
+  ],
+  "author": "Felipe Hernandez P.",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^21.0.1"
+  }
+}

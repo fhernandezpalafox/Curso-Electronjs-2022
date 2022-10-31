@@ -1,0 +1,21 @@
+{
+  "name": "app02",
+  "version": "1.0.0",
+  "description": "Segundo ejercicio de electronJS",
+  "main": "app.js",
+  "scripts": {
+    "dev": "electron app.js",
+    "start": "electron app.js"
+  },
+  "keywords": [
+    "electronjs",
+    "nodejs",
+    "html",
+    "js"
+  ],
+  "author": "Felipe Hernandez P.",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^21.0.1"
+  }
+}

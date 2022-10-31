@@ -1,0 +1,15 @@
+{
+  "name": "app-13-systemtray-shorcuts-webview",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "electron app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^21.2.0"
+  }
+}

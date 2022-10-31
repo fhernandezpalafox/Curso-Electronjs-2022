@@ -1,0 +1,23 @@
+{
+  "name": "app-05-nodeIntegration",
+  "version": "1.0.0",
+  "description": "Quinta aplicacion de Electron",
+  "main": "app.js",
+  "scripts": {
+    "dev": "electron app.js",
+    "start": "electron app.js"
+  },
+  "keywords": [
+    "Electron",
+    "NodeJs",
+    "Escritorio",
+    "Bootstrap"
+  ],
+  "author": "Felipe Hernandez P.",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.2.2",
+    "electron": "^21.0.1",
+    "jquery": "^3.6.1"
+  }
+}

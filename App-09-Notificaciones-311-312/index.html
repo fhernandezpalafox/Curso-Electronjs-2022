@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificaciones</title>
+</head>
+<body>
+
+    <input type="button" 
+                value="Notificacion"  
+                id="btnNotify" />
+
+    <script>
+     
+     const notifier  =  require('node-notifier');//Npm
+     const path  =  require('path'); //NodeJs
+     //ES6
+     document.getElementById('btnNotify').onclick = (event) => {
+        console.log(__dirname);
+        notifier.notify(
+                {
+                    title: 'Este es mi titulo',
+                    message: 'Hola grupo del 311 y 312',
+                    icon: path.join(__dirname, '/information.png'), // Absolute path (doesn't work on balloons)
+                    sound: true, // Only Notification Center or Windows Toasters
+                    wait: true // Wait with callback, until user action is taken against notification, does not apply to Windows Toasters as they always wait or notify-send as it does not support the wait option
+                },
+                function (err, response, metadata) {
+                    // Response is response from notification
+                    // Metadata contains activationType, activationAt, deliveredAt
+                    alert('Mensaje de la notificacion');
+                });
+
+                notifier.on('click', function (notifierObject, options, event) {
+                // Triggers if `wait: true` and user clicks notification
+                });
+
+                notifier.on('timeout', function (notifierObject, options) {
+                // Triggers if `wait: true` and notification closes
+                });
+     }
+
+
+    </script>            
+    
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>...</title>
+</head>
+<body>
+    
+    <div>
+        <div>
+           <h2>Uso del tag WebView</h2>
+        </div>
+        <webview id="foo" 
+                 src="https://www.github.com/" 
+                 style="display:inline-flex;width: 800px;height: 500px;">
+          <div class = "indicator"></div>
+        </webview>
+     </div>
+
+     <script type = "text/javascript">
+          
+        onload = () => {
+
+           const webview = document.getElementById('foo')
+           const indicator = document.querySelector('.indicator')
+
+           const loadstart = () => {
+              indicator.innerText = 'loading...'
+           }
+
+           const loadstop = () => {
+              indicator.innerText = ''
+           }
+
+           webview.addEventListener('did-start-loading', loadstart)
+           webview.addEventListener('did-stop-loading', loadstop)
+
+        }
+
+
+     </script>
+</body>
+</html>

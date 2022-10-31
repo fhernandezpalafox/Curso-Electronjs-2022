@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5° Aplicación</title>
+</head>
+<body>
+    
+   <script>
+
+       let os =  require('os');
+
+       document.write('User info', JSON.stringify(os.userInfo()) + '<br/>'+
+                     'Platform '+ os.platform()+'<br/>'+
+                     'User home directory: '+os.homedir()+'<br/>'+
+                     'Os Arquictecture '+ os.arch()+'<br/>');
+
+   </script>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "app-03-bootstrap",
+  "version": "1.0.0",
+  "description": "Tercer aplicacion de Electron con Bootstrap",
+  "main": "app.js",
+  "scripts": {
+    "test": "electron app.js",
+    "dev": "electron app.js"
+  },
+  "keywords": [
+    "Electron",
+    "Nodejs",
+    "escritorio"
+  ],
+  "author": "Felipe Hernandez P.",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.2.2",
+    "electron": "^21.0.1",
+    "jquery": "^3.6.1"
+  }
+}

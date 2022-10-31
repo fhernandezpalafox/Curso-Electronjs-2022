@@ -1,0 +1,16 @@
+{
+  "name": "app-07-ipcmain-ipcrenderer-311",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "electron app.js",
+    "start": "electron app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^21.2.0"
+  }
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Octava aplicación</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body>
+       <div class="container" style="margin: 30px;">
+         
+           <input type="button" value="Abrir" onclick="onAbrir()" class="btn btn-primary" />
+             <br>
+             <br>
+             <input type="button" value="Abrir Imagen" onclick="onAbrirImagen()" class="btn btn-primary" />
+
+             <br>
+             <br>
+             
+             <input type="button" value="Guardar" onclick="onGuardar()" class="btn btn-primary" />
+             
+             <br>
+             <br>
+
+             <div id="contenido"></div>
+
+             <br>
+             <br>
+
+             <textarea 
+             name="txtContenido" 
+             id="txtContenido" 
+             cols="30" rows="10" style="width: 70%;"></textarea>
+
+             <br>
+             <br>
+             <img src="" alt="Imagen" id="imgFoto"  />
+
+       </div>
+
+       <script>
+        
+         const {ipcRenderer} =  require('electron');
+
+        //ES6
+        onAbrir = () => {
+            ipcRenderer.send('openFile');
+        }
+
+        onAbrirImagen = () => {
+            ipcRenderer.send('openFileImg');
+        }
+        
+        onGuardar = () => {
+            ipcRenderer.send('saveFile', document.getElementById('txtContenido').value);
+        }
+
+        
+        ipcRenderer.on('datosarchivo', (event, args) => {
+            document.getElementById('contenido').innerHTML = args;
+            document.getElementById('txtContenido').value =  args;
+        });
+
+        ipcRenderer.on('nuevoarchivo', (event, args) => {
+            document.getElementById('imgFoto').setAttribute('src',args);
+        })
+
+       </script>
+</body>
+</html>

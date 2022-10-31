@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camara en Electron</title>
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    </head>
+    <body>
+    
+    <!-- HTML semantico y HTML no semantico -->
+    <!-- HTML 5 > osea semantico : main, aside, footer, navigation -->  
+    <canvas id="camdemo"></canvas>
+    <br>
+
+    <div id="phototake" style="width: 100%; text-align: center;">
+        <video autoplay></video> 
+    </div>
+
+    <div>
+      <br>
+       <div style="text-align: center;">
+        <input type="button" class="btn btn-primary" id="btnTomarFoto" value="Tomar foto" />
+        <input type="button" class="btn btn-dark" id="btnGuardar" value="Guardar Foto" />
+       </div>
+
+    </div>
+
+    <script>
+     
+     const {ipcRenderer} =  require('electron');
+     const {dialog} =  require('electron');
+     var fs = require('fs');
+
+     let canvas = window.document.querySelector('canvas');
+
+     document.getElementById('btnTomarFoto').addEventListener('click',() => {
+       
+        var shutter =  new Audio();
+        shutter.autoplay =  false;
+        shutter.src = navigator.userAgent.match(/Firefox/) ? 'shutter.ogg': 'shutter.mp3';
+        shutter.play();
+       
+
+        let video = window.document.querySelector('video');
+        
+        canvas.height = video.videoHeight;
+        canvas.width = video.videoWidth;
+
+        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+       // photoData = canvas.toDataURL('image/png').replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
+        
+
+     });
+     
+     window.onload = () => {
+        navigator.getMedia = ( navigator.getUserMedia ||
+                                navigator.webkitGetUserMedia ||
+                                navigator.mozGetUserMedia ||
+                                navigator.msGetUserMedia);
+
+        video = window.document.querySelector('video');
+        let errorCallback = (error) => {
+            console.log(`There was an error connecting to the video stream: ${error.message}`);
+        };
+
+        navigator.getMedia({video: true}, (localMediaStream) => {
+            video.srcObject = localMediaStream;  //window.URL.createObjectURL(localMediaStream);
+        }, errorCallback);
+     }
+
+     document.getElementById('btnGuardar').addEventListener('click', ()=> {
+        var data  = processBase64Image();
+        ipcRenderer.send('saveFile',data);
+     })
+     
+     function processBase64Image() {
+            var matches = canvas.toDataURL('image/png').match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+            var response = {};
+
+              if (matches.length !== 3) {
+                  return new Error('Invalid input string');
+              }
+
+              response.type = matches[1];
+              response.data =  Buffer.from(matches[2], 'base64');
+
+              return response;
+            }
+
+    </script>
+</body>
+</html>
